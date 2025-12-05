@@ -1,7 +1,12 @@
 ---
+title: "README"
+author: "Dongwook Kim"
+date: "`r Sys.Date()`"
 output:
-  pdf_document: default
-  html_document: default
+  pdf_document:
+    latex_engine: xelatex
+    toc: true
+    number_sections: true
 ---
 # KEAPS Self-employment Rate
 
@@ -42,7 +47,7 @@ This project analyzes **self-employment rates** using Korean Economically Active
 
 ## Project Structure
 
-```         
+```     
 Project/
 │
 ├── R/
@@ -57,7 +62,7 @@ Project/
 │   ├── 01_preprocess.R
 │   ├── 02_data_clean.R
 │   ├── 03_rate_calculation.R
-│   └── 03_data_visualization.R # Will be uploaded soon
+│   └── 04_data_visualization.R # Will be uploaded soon
 │
 ├── data/
 │   ├── raw/                    # Raw KEAPS .csv files

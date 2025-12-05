@@ -1,0 +1,426 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={README},
+  pdfauthor={Dongwook Kim},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{README}
+\author{Dongwook Kim}
+\date{2025-07-29}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\section{KEAPS Self-employment Rate}\label{keaps-self-employment-rate}
+
+This project analyzes \textbf{self-employment rates} using Korean
+Economically Active Population Survey (KEAPS) \textbf{from 1981 to
+2024}. It calculates and visualizes trends by \textbf{year,
+industry(KSIC), age, and gender}.
+
+\subsection{Overview}\label{overview}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Data source}: KEAPS (Korean Economically Active Population
+  Survey)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Available at {[}MDIS{]}
+    (\url{https://mdis.kostat.go.kr/eng/index.do})
+  \end{itemize}
+\item
+  \textbf{Scope}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Period}: 1981 - 2024 (monthly KEAPS microdata)
+  \item
+    \textbf{Unit of analysis}: Individuals of age 15+
+  \item
+    \textbf{Key variables}:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Employment status, industry (KSIC), gender \& age group
+    \item
+      Self-employment classification
+
+      \begin{itemize}
+      \tightlist
+      \item
+        \textbf{Type 1 (OECD)}: Family workers + self-employed with and
+        without employees
+      \item
+        \textbf{Type 2 (KOSIS)}: Self-employed with and without
+        employees
+      \item
+        \textbf{Type 3 (Project)}: Self-employed without employees only
+      \end{itemize}
+    \end{itemize}
+  \item
+    \textbf{Aggregation level}:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Yearly trends
+    \item
+      Industry-level trends
+    \item
+      Age \& Gender group trends
+    \end{itemize}
+  \end{itemize}
+\item
+  \textbf{Outputs}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Monthly Outputs}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \texttt{month\_trends\_age\_group\_2.rdata}, etc.: monthly trends
+
+      \begin{itemize}
+      \tightlist
+      \item
+        \texttt{month\_overall}: monthly self-employment rates
+      \item
+        \texttt{month\_ind}: monthly rates by industry
+      \item
+        \texttt{month\_as}: monthly rates by age \& gender group
+      \item
+        \texttt{month\_as\_wg}: monthly rates within age \& gender group
+      \item
+        \texttt{month\_supp}: monthly labor participation \&
+        unemployment rates
+      \end{itemize}
+    \end{itemize}
+  \item
+    \textbf{Yearly Outputs}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \texttt{year\_trends\_age\_group\_2.rdata}, etc.: yearly trends
+
+      \begin{itemize}
+      \tightlist
+      \item
+        \texttt{year\_overall}: yearly self-employment rates
+      \item
+        \texttt{year\_ind}: yearly rates by industry
+      \item
+        \texttt{year\_as}: yearly rates by age \& gender group
+      \item
+        \texttt{year\_as\_wg}: yearly rates within age \& gender group
+      \item
+        \texttt{year\_supp}: yearly labor participation \& unemployment
+        rates
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\subsection{Project Structure}\label{project-structure}
+
+\begin{verbatim}
+Project/
+│
+├── R/
+│   ├── raw/                    # Raw .R scripts from KOSIS
+│   ├── modules/
+│   │      ├─preprocess/        # Preprocessing functions
+│   │      ├─cleaning/          # Variable cleaning & standardization
+│   │      ├─calc/              # Calculation of self-employment rates
+│   │      └─visualization/     # Plotting functions
+│   │
+│   ├── main_pipeline.R
+│   ├── 01_preprocess.R
+│   ├── 02_data_clean.R
+│   ├── 03_rate_calculation.R
+│   └── 03_data_visualization.R # Will be uploaded soon
+│
+├── data/
+│   ├── raw/                    # Raw KEAPS .csv files
+│   ├── processed/              # Processed .rds files
+│   ├── cleaned/                # Cleaned .rds files
+│   └── output/                 # Final monthly/yearly .rdata files
+│
+├── image/
+│
+└── README.md                   # This documentation
+\end{verbatim}
+
+\subsection{How to Run}\label{how-to-run}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Place raw \texttt{.csv} files in \texttt{data/raw/}
+\item
+  Place KOSIS \texttt{.R} scripts in \texttt{R/raw/}
+\item
+  In RStudio (project opened with \texttt{.Rproj}), open
+  \texttt{main\_pipeline.R}
+\item
+  Run all sections
+\item
+  Outputs will be saved in \texttt{data/output/} as \texttt{.rdata}
+  files
+\item
+  Images will be saved in \texttt{image/}
+\end{enumerate}
+
+\subsection{Analysis Pipeline}\label{analysis-pipeline}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Process raw data}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Raw \texttt{.csv} files are processed with KOSIS-provided scripts
+  \end{itemize}
+\item
+  \textbf{Load raw data}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{.rds} files from 1981--2024 stored in
+    \texttt{data/processed/}
+  \end{itemize}
+\item
+  \textbf{Standardize variables}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Aligns consistent variable names across years
+  \end{itemize}
+\item
+  \textbf{Recode variables}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Translates Korean -\textgreater{} English
+  \item
+    Groups ages hierarchically:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      5-year intervals
+    \item
+      60+, 70+, 80+ categories
+    \end{itemize}
+  \item
+    Classifies self-employment into 3 types (see above)
+  \end{itemize}
+\item
+  \textbf{Calculate monthly rates}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Self-employment rate (overall, by industry, by/within group)
+  \item
+    Supplementary: labor force participation \& unemployment rate
+  \end{itemize}
+\item
+  \textbf{Aggregate to yearly outputs}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Averages monthly results by year
+  \end{itemize}
+\end{enumerate}
+
+\subsection{Dependencies}\label{dependencies}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{R} (\textgreater= 4.4.1)
+\item
+  \textbf{Required Packages}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{dplyr}
+  \item
+    \texttt{stringr}
+  \item
+    \texttt{rlang}
+  \item
+    \texttt{purrr}
+  \item
+    \texttt{stringi}
+  \item
+    \texttt{data.table}
+  \item
+    \texttt{readr}
+  \item
+    \texttt{ggplot2}
+  \end{itemize}
+\item
+  \textbf{Optional}: \texttt{grafify} for color palettes
+\item
+  To install the packages, use in R:
+\end{itemize}
+
+\begin{verbatim}
+install.packages(c("dplyr", "stringr", "rlang", "purrr", "stringi", "data.table", "readr", "ggplot2"))
+\end{verbatim}
+
+\subsection{Example Output}\label{example-output}
+
+Below is an example plot showing yearly trends of self-employment rate
+(1981-2024). Each colored line shows different types of self-employment
+as defined above. The dashed line represents tax-data comparable
+estimates which excludes family workers from the employed population. A
+vertical red line indicates 1997 IMF Financial Crisis.
+\includegraphics{image/year_trends_1981_2024.png}
+
+\subsection{Known Issues}\label{known-issues}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{KOSIS codes}: Use \texttt{"CP949"} to read \texttt{.R} scripts
+  correctly
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{RStudio -\textgreater{} File -\textgreater{} Reopen with
+    Encoding -\textgreater{} ``CP949''}
+  \end{itemize}
+\item
+  \textbf{1983 survey}: Economic activity data highly likely corrupted
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Participation rate is 1 in most months; results unreliable
+  \end{itemize}
+\item
+  \textbf{1984 survey}: \texttt{weight} variable miscoded
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Contains prefix ``\xb''; fixed manually
+  \end{itemize}
+\item
+  \textbf{1986 survey}: \texttt{recode\_factor()} in original KOSIS
+  script was misaligned
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Fixed in \texttt{code/raw/fix\_1986.R}
+  \end{itemize}
+\item
+  \textbf{KSIC Industry Codes} revised over times:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    5th KSIC: 1986 - 1992
+  \item
+    6th/7th KSIC: 1993 - 2000
+  \item
+    8th KSIC: 2000 - 2008
+  \item
+    9th KSIC: 2004 - 2017
+  \item
+    10th, 11th KSIC: 2013 - 2024
+  \item
+    Mapping handled in \texttt{ksic\_mapping.R}
+  \end{itemize}
+\end{itemize}
+
+\end{document}
